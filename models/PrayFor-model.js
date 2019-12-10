@@ -19,3 +19,4 @@ module.exports = mongoose.model("PrayFor", prayForSchema);
 // Append logic
 // quote bible logic
 // close prayer, prayer answered
+// Comment logic for appending adding to prayer
