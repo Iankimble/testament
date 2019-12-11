@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const expressValidator = require("express-validator");
-const fs = require("fs");
 const cors = require("cors");
 
 const dotenv = require("dotenv");
@@ -14,19 +13,24 @@ dotenv.config();
 const app = express();
 
 // Routes
-const postRoutes = require("./routes/post-routes");
+const authRoutes = require("./routes/auth-route");
+const userRoutes = require("./routes/user-route");
+// // const prayRoutes = require("./routes/prayPost-routes");
 
 // Middleware
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(expressValidator());
 app.use(cors());
-app.use("/", postRoutes);
+app.use(expressValidator());
+
 app.use("/", authRoutes);
 app.use("/", userRoutes);
+
+// app.use("/", prayRoutes);
+
 app.use((err, req, res, next) => {
-  if (err.name === "UnauthorizedError") {
+  if (err.firstName === "UnauthorizedError") {
     res.status(401).json({ error: "Unauthroized user" });
   }
 });
