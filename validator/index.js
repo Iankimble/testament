@@ -21,6 +21,29 @@ exports.userSignupValidator = (req, res, next) => {
     const firstError = errors.map(error => error.msg)[0];
     return res.status(400).json({ error: firstError });
   }
+  next();
+};
 
+exports.createPostValidator = (req, res, next) => {
+  // title
+  req.check("title", "please give your prayer a name").notEmpty();
+  req.check("title", "Title must be between 4 to 150 characters").isLength({
+    min: 4,
+    max: 150
+  });
+  // body
+  req.check("body", "Pleas write a prayer").notEmpty();
+  req.check("body", "Body must be between 4 to 2000 characters").isLength({
+    min: 4,
+    max: 2000
+  });
+  // check for errors
+  const errors = req.validationErrors();
+  // if error show the first one as they happen
+  if (errors) {
+    const firstError = errors.map(error => error.msg)[0];
+    return res.status(400).json({ error: firstError });
+  }
+  // proceed to next middleware
   next();
 };

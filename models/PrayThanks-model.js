@@ -16,7 +16,7 @@ const prayThanksSchema = new mongoose.Schema({
   updated: Date
 });
 
-module.exports = mongoose.model("PrayFor", prayThanksSchema);
+module.exports = mongoose.model("PrayThanks", prayThanksSchema);
 
 // Append logic
 // quote bible logic

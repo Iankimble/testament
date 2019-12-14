@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const uuidv1 = require("uuid/v1");
-const crypto = require("crypto");
+const { ObjectId } = mongoose.Schema;
 
 // Model to make a prayer for a person/people
 
@@ -13,12 +12,16 @@ const prayMainSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  createdOn: {
+    type: Date,
+    default: Date.now
+  },
+  createdBy: {
+    type: ObjectId,
+    ref: "User"
+  },
+  append: [{ msg: String, madeOn: { type: Date, default: Date.now } }],
   updated: Date
 });
 
-module.exports = mongoose.model("PrayFor", prayMainSchema);
-
-// Append logic
-// quote bible logic
-// close prayer, prayer answered
-// comment logic for adding/ apending update
+module.exports = mongoose.model("PrayMain", prayMainSchema);

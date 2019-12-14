@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const uuidv1 = require("uuid/v1");
-const crypto = require("crypto");
+// const uuidv1 = require("uuid/v1");
+// const crypto = require("crypto");
 
 const prayForSchema = new mongoose.Schema({
   prayforName: {
@@ -14,7 +14,7 @@ const prayForSchema = new mongoose.Schema({
   updated: Date
 });
 
-module.exports = mongoose.model("PrayFor", prayForSchema);
+module.exports = mongoose.model("prayFor", prayForSchema);
 
 // Append logic
 // quote bible logic

@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const uuidv1 = require("uuid/v1");
 const crypto = require("crypto");
+
+// const pf = require("./PrayFor-model");
+// const pm = require("./PrayMain-model");
+// const ty = require("./PrayThanks-model");
+
 const { ObjectId } = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
@@ -26,6 +31,10 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true
+  },
+  createOn: {
+    type: Date,
+    default: Date.now
   },
   updated: Date
 });

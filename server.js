@@ -15,19 +15,17 @@ const app = express();
 // Routes
 const authRoutes = require("./routes/auth-route");
 const userRoutes = require("./routes/user-route");
-// // const prayRoutes = require("./routes/prayPost-routes");
+const mainPrayerRoutes = require("./routes/pm-routes");
 
 // Middleware
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors());
 app.use(expressValidator());
-
+app.use(cors());
 app.use("/", authRoutes);
 app.use("/", userRoutes);
-
-// app.use("/", prayRoutes);
+app.use("/", mainPrayerRoutes);
 
 app.use((err, req, res, next) => {
   if (err.firstName === "UnauthorizedError") {

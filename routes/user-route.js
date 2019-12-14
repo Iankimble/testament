@@ -4,8 +4,9 @@ const {
   userById,
   getUser,
   updateUser,
-  deleteUser
-} = require("../controllers/user-crud-controller");
+  deleteUser,
+  hasAuthorization
+} = require("../controllers/user-controller");
 
 const { requireSignin } = require("../controllers/auth-controller");
 
@@ -15,10 +16,10 @@ const router = express.Router();
 router.get("/user/:userId", requireSignin, getUser);
 
 // update account
-router.put("/user/:userId", requireSignin, updateUser);
+router.put("/user/:userId", requireSignin, hasAuthorization, updateUser);
 
 // delete account
-router.delete("/user/:userId", requireSignin, deleteUser);
+router.delete("/user/:userId", requireSignin, hasAuthorization, deleteUser);
 
 router.param("userId", userById);
 
