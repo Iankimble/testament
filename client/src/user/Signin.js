@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { signin, authenticate, isAuthenticated } from "../auth/Index.js";
+import { Jumbotron, Form, Container, Col, Button } from "react-bootstrap";
 
 class Signin extends Component {
   constructor() {
@@ -42,25 +43,30 @@ class Signin extends Component {
 
   signinForm = (email, password) => (
     <form>
-      <div>
-        <label>Email </label>
-        <input
-          onChange={this.handleChange("email")}
-          type="text"
-          value={email}
-        ></input>
-      </div>
+      <br />
+      <Form>
+        <Form.Group controlId="formGroupEmail">
+          <Form.Label>Email Address</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder=""
+            onChange={this.handleChange("email")}
+            value={email}
+          />
+        </Form.Group>
 
-      <div>
-        <label>Password </label>
-        <input
-          onChange={this.handleChange("password")}
-          type="password"
-          value={password}
-        ></input>
-      </div>
-
-      <button onClick={this.clickSubmit}>Submit</button>
+        <Form.Group controlId="formGroupPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder=""
+            onChange={this.handleChange("password")}
+            type="password"
+            value={password}
+          />
+        </Form.Group>
+        <Button onClick={this.clickSubmit}>Submit</Button>
+      </Form>
     </form>
   );
 
@@ -72,18 +78,21 @@ class Signin extends Component {
 
     return (
       <div>
-        <h1>Sign In</h1>
+        <Jumbotron style={{ height: "90vh" }}>
+          <br />
+          <h1>Sign In</h1>
 
-        <div style={{ display: error ? "" : "none" }}>{error}</div>
+          <div style={{ display: error ? "" : "none" }}>{error}</div>
 
-        {loading ? (
-          <div>
-            <h2>Loading...</h2>
-          </div>
-        ) : (
-          ""
-        )}
-        {this.signinForm(email, password)}
+          {loading ? (
+            <div>
+              <h2>Loading...</h2>
+            </div>
+          ) : (
+            ""
+          )}
+          {this.signinForm(email, password)}
+        </Jumbotron>
       </div>
     );
   }

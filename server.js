@@ -19,23 +19,6 @@ const userRoutes = require("./routes/user-route");
 const mainPrayerRoutes = require("./routes/pm-routes");
 const dailyBreadRoute = require("./routes/dailyBread-route");
 
-// Daily bread logic
-// var options = {
-//   method: "GET",
-//   url: "https://ajith-holy-bible.p.rapidapi.com/GetVerses",
-//   qs: { Book: "Job", chapter: "4", VerseFrom: "5", VerseTo: "10" },
-//   headers: {
-//     "x-rapidapi-host": "ajith-holy-bible.p.rapidapi.com",
-//     "x-rapidapi-key": "vvGe6mgKVamsh6lwgjlpLJnxM7oKp1qiE7OjsnFW2o2Lpl9caf"
-//   }
-// };
-
-// request(options, function(error, response, body) {
-//   if (error) throw new Error(error);
-
-//   console.log(body);
-// });
-
 // Middleware
 app.use(morgan("dev"));
 app.use(bodyParser.json());

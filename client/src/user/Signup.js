@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { signup } from "../auth/Index";
 import { Link } from "react-router-dom";
+import { Jumbotron, Container, Form, Col, Button } from "react-bootstrap";
 
 class Signup extends Component {
   constructor() {
@@ -45,59 +46,75 @@ class Signup extends Component {
   };
 
   signupForm = (firstName, lastName, email, password) => (
-    <form>
-      <div>
-        <label>First Name </label>
-        <input
-          onChange={this.handleChange("firstName")}
-          type="text"
-          value={firstName}
-        ></input>
-        <div></div>
+    <div>
+      <h1>Sign Up</h1>
+      <br />
+      <form>
+        <Form>
+          <Form.Row>
+            <Col>
+              <Form.Label>First Name</Form.Label>
+              <Form.Control
+                placeholder="First name"
+                type="text"
+                placeholder=""
+                onChange={this.handleChange("firstName")}
+                value={firstName}
+              />
+            </Col>
+            <Col>
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                placeholder="Last name"
+                type="text"
+                placeholder=""
+                onChange={this.handleChange("lastName")}
+                value={lastName}
+              />
+            </Col>
+          </Form.Row>
 
-        <div>
-          <label>Last Name </label>
-          <input
-            onChange={this.handleChange("lastName")}
-            type="text"
-            value={lastName}
-          ></input>
-        </div>
+          <Form.Group controlId="formGroupEmail">
+            <Form.Label>Email Address</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder=""
+              onChange={this.handleChange("email")}
+              value={email}
+            />
+          </Form.Group>
 
-        <label>Email </label>
-        <input
-          onChange={this.handleChange("email")}
-          type="email"
-          value={email}
-        ></input>
-      </div>
+          <Form.Group controlId="formGroupPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder=""
+              onChange={this.handleChange("password")}
+              type="password"
+              value={password}
+            />
+          </Form.Group>
+        </Form>
 
-      <div>
-        <label>Password </label>
-        <input
-          onChange={this.handleChange("password")}
-          type="password"
-          value={password}
-        ></input>
-      </div>
-
-      <button onClick={this.clickSubmit}>Submit</button>
-    </form>
+        <Button onClick={this.clickSubmit}>Submit</Button>
+      </form>
+    </div>
   );
 
   render() {
     const { firstName, lastName, email, password, error, open } = this.state;
     return (
       <div>
-        <h1>Sign up</h1>
+        <Jumbotron style={{ height: "90vh" }}>
+          <div style={{ display: error ? "" : "none" }}>{error}</div>
 
-        <div style={{ display: error ? "" : "none" }}>{error}</div>
-
-        <div style={{ display: open ? "" : "none" }}>
-          Account successfully created!
-          <Link to="/signin"> Sign in</Link>
-        </div>
-        {this.signupForm(firstName, lastName, email, password)}
+          <div style={{ display: open ? "" : "none" }}>
+            Account successfully created!
+            <Link to="/signin"> Sign in</Link>
+          </div>
+          <br />
+          {this.signupForm(firstName, lastName, email, password)}
+        </Jumbotron>
       </div>
     );
   }
