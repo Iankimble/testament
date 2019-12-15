@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const expressValidator = require("express-validator");
 const cors = require("cors");
+var request = require("request");
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -16,6 +17,24 @@ const app = express();
 const authRoutes = require("./routes/auth-route");
 const userRoutes = require("./routes/user-route");
 const mainPrayerRoutes = require("./routes/pm-routes");
+const dailyBreadRoute = require("./routes/dailyBread-route");
+
+// Daily bread logic
+// var options = {
+//   method: "GET",
+//   url: "https://ajith-holy-bible.p.rapidapi.com/GetVerses",
+//   qs: { Book: "Job", chapter: "4", VerseFrom: "5", VerseTo: "10" },
+//   headers: {
+//     "x-rapidapi-host": "ajith-holy-bible.p.rapidapi.com",
+//     "x-rapidapi-key": "vvGe6mgKVamsh6lwgjlpLJnxM7oKp1qiE7OjsnFW2o2Lpl9caf"
+//   }
+// };
+
+// request(options, function(error, response, body) {
+//   if (error) throw new Error(error);
+
+//   console.log(body);
+// });
 
 // Middleware
 app.use(morgan("dev"));
@@ -26,6 +45,7 @@ app.use(cors());
 app.use("/", authRoutes);
 app.use("/", userRoutes);
 app.use("/", mainPrayerRoutes);
+app.use("/", dailyBreadRoute);
 
 app.use((err, req, res, next) => {
   if (err.firstName === "UnauthorizedError") {
