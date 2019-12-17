@@ -4,12 +4,7 @@ const {
   pmById,
   allUserPm,
   createPm,
-  singlePm,
-  editPm,
-  deletePm,
-  appendPm,
-  editappendPm,
-  deleteappend
+  singlePm
 } = require("../controllers/mainPrayer-controller");
 
 const { requireSignin } = require("../controllers/auth-controller");

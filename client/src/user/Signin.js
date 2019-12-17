@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { signin, authenticate, isAuthenticated } from "../auth/Index.js";
-import { Jumbotron, Form, Container, Col, Button } from "react-bootstrap";
+import { Jumbotron, Form, Button } from "react-bootstrap";
 
 class Signin extends Component {
   constructor() {
@@ -61,7 +61,6 @@ class Signin extends Component {
             type="password"
             placeholder=""
             onChange={this.handleChange("password")}
-            type="password"
             value={password}
           />
         </Form.Group>

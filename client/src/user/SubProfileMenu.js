@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Card, CardDeck, CardGroup, Button } from "react-bootstrap";
+import { Card, CardGroup, Button } from "react-bootstrap";
 
 class SubProfileMenu extends Component {
   render() {
@@ -17,13 +17,19 @@ class SubProfileMenu extends Component {
               <Card.Text style={{ textAlign: "center", fontSize: "75px" }}>
                 {pm.length}
               </Card.Text>
-              <div>
-                <Button size="lg" block>
-                  View all prayers
-                </Button>
-                <Button size="lg" block>
-                  Create new prayer
-                </Button>
+              <div style={{ marginBottom: "5px" }}>
+                <Link to="all/pm/:userId">
+                  <Button size="lg" block>
+                    View all prayers
+                  </Button>
+                </Link>
+              </div>
+              <div style={{ marginTop: "5px" }}>
+                <Link to="/pm/:pmId">
+                  <Button size="lg" block>
+                    Create new prayer
+                  </Button>
+                </Link>
               </div>
             </Card.Body>
             <Card.Footer style={{ textAlign: "center" }}>

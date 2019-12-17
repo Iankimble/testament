@@ -2,7 +2,7 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { signout, isAuthenticated } from "../auth/Index";
 
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Button } from "react-bootstrap";
 
 const isActive = (history, path) => {
   if (history.location.pathname === path) return {};
@@ -49,24 +49,30 @@ const Menu = ({ history }) => (
           <Navbar.Toggle areia-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav.Link>
-              <Link style={isActive(history, "/")}>My prayers</Link>
+              <Link
+                style={isActive(history, `/create/new/pm/:userId`)}
+                to="/create/new/pm"
+              >
+                Create a prayer
+              </Link>
             </Nav.Link>
-
+            {/* 
             <Nav.Link>
               <Link style={isActive(history, "/")}>Prayers for others</Link>
             </Nav.Link>
 
             <Nav.Link>
               <Link style={isActive(history, "/")}>Thanks and praise</Link>
-            </Nav.Link>
+            </Nav.Link> */}
 
-            <Nav>
-              <button
+            <Nav style={{ display: "flex", marginLeft: "auto" }}>
+              <Button
                 style={isActive(history, "/signout")}
                 onClick={() => signout(() => history.push("/"))}
+                style={{ float: "right" }}
               >
                 Sign out
-              </button>
+              </Button>
             </Nav>
           </Navbar.Collapse>
         </>

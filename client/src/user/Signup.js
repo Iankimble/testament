@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { signup } from "../auth/Index";
 import { Link } from "react-router-dom";
-import { Jumbotron, Container, Form, Col, Button } from "react-bootstrap";
+import { Jumbotron, Form, Col, Button } from "react-bootstrap";
 
 class Signup extends Component {
   constructor() {
@@ -57,7 +57,6 @@ class Signup extends Component {
               <Form.Control
                 placeholder="First name"
                 type="text"
-                placeholder=""
                 onChange={this.handleChange("firstName")}
                 value={firstName}
               />
@@ -67,7 +66,6 @@ class Signup extends Component {
               <Form.Control
                 placeholder="Last name"
                 type="text"
-                placeholder=""
                 onChange={this.handleChange("lastName")}
                 value={lastName}
               />
@@ -78,7 +76,6 @@ class Signup extends Component {
             <Form.Label>Email Address</Form.Label>
             <Form.Control
               type="text"
-              placeholder=""
               onChange={this.handleChange("email")}
               value={email}
             />
@@ -90,7 +87,6 @@ class Signup extends Component {
               type="password"
               placeholder=""
               onChange={this.handleChange("password")}
-              type="password"
               value={password}
             />
           </Form.Group>

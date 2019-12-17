@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Jumbotron, Container, Button, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -43,7 +43,7 @@ const Main = () => (
                 variant="primary"
                 style={{ margin: "auto", width: "300px", marginTop: "1px" }}
               >
-                Sign up
+                Sign in
               </Button>
             </Link>
           </div>

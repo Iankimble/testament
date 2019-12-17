@@ -18,7 +18,7 @@ exports.pmById = (req, res, next, id) => {
 };
 
 // All Pm by users
-exports.allUserPm = (req, res) => {
+exports.allUserPm = async (req, res) => {
   MainPrayer.find({ createdBy: req.profile._id })
     .populate("createdBy", "_id firstName")
     .select("_id prayerTitle body createOn")
@@ -34,7 +34,7 @@ exports.allUserPm = (req, res) => {
 };
 
 // Create a new prayer
-exports.createPm = (req, res) => {
+exports.createPm = (req, res, next) => {
   let newPm = new MainPrayer(req.body);
   newPm.createdBy = req.profile;
   newPm.save(err => {
@@ -62,3 +62,33 @@ exports.userConfirmed = (req, res, next) => {
   }
   next();
 };
+
+// exports.createPm = (req, res, next) => {
+//   let form = new formidable.IncomingForm();
+//   form.keepExtensions = true;
+//   form.parse(req, (err, fields, files) => {
+//     if (err) {
+//       return res.status(400).json({
+//         error: "Image could not be uploaded"
+//       });
+//     }
+//     let pm = new MainPrayer(fields);
+
+//     req.profile.hashed_password = undefined;
+//     req.profile.salt = undefined;
+//     pm.createdBy = req.profile;
+
+//     if (files.photo) {
+//       post.photo.data = fs.readFileSync(files.photo.path);
+//       post.photo.contentType = files.photo.type;
+//     }
+//     pm.save((err, result) => {
+//       if (err) {
+//         return res.status(400).json({
+//           error: err
+//         });
+//       }
+//       res.json(result);
+//     });
+//   });
+// };

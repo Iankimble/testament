@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth/Index";
-import { Redirect, Link } from "react-router-dom";
+// import { Redirect, Link } from "react-router-dom";
 import { read } from "./User-Api";
 import SubProfileMenu from "./SubProfileMenu";
 import { allUserPm } from "../prayers/prayer-api";
@@ -53,13 +53,8 @@ class Profile extends Component {
     this.init(userId);
   }
 
-  // componentDidMount() {
-  //   console.log(this.props.match.params.userId);
-  //   console.log(this.state.pm);
-  // }
-
   render() {
-    const { redirectToSignin, user, pm } = this.state;
+    const { pm } = this.state;
 
     return (
       <div>
