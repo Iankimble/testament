@@ -50,8 +50,11 @@ const Menu = ({ history }) => (
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav.Link>
               <Link
-                style={isActive(history, `/create/new/pm/:userId`)}
-                to="/create/new/pm"
+                style={isActive(
+                  history,
+                  `new/prayer/${isAuthenticated().user._id}`
+                )}
+                to={`/new/prayer/${isAuthenticated().user._id}`}
               >
                 Create a prayer
               </Link>

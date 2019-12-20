@@ -13,8 +13,8 @@ export const read = (userId, token) => {
     .catch(err => console.log(err));
 };
 
-export const allUserPm = (userId, token) => {
-  return fetch(`${process.env.REACT_APP_API_URL}/all/pm/${userId}`, {
+export const allPrayers = (userId, token) => {
+  return fetch(`${process.env.REACT_APP_API_URL}/all/prayers/${userId}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -38,8 +38,8 @@ export const singlePmPrayer = postId => {
     .catch(err => console.log(err));
 };
 
-export const createPm = (userId, token, data) => {
-  return fetch(`${process.env.REACT_APP_API_URL}/create/new/pm/${userId}`, {
+export const createPrayer = (userId, token, data) => {
+  return fetch(`${process.env.REACT_APP_API_URL}/new/prayer/${userId}`, {
     method: "POST",
     headers: {
       Accept: "application/json",

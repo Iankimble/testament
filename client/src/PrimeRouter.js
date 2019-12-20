@@ -7,7 +7,7 @@ import Signin from "./user/Signin";
 import Profile from "./user/Profile";
 import PrivateRouter from "./auth/PrivateRouter";
 
-import CreatePm from "./prayers/CreatePm";
+import CreatePrayer from "./prayers/CreatePrayer";
 // import SinglePm from "./prayers/SinglePm";
 // import EditPm from "/";
 // import DeletePm from "/";
@@ -24,7 +24,11 @@ const PrimeRouter = () => (
 
       <PrivateRouter exact path="/user/:userId" component={Profile} />
       {/* <Route exact path="/all/pm/:userId" component={AllPmPrayers} /> */}
-      <PrivateRouter exact path="/create/new/pm" component={CreatePm} />
+      <PrivateRouter
+        exact
+        path="/new/prayer/:userId"
+        component={CreatePrayer}
+      />
 
       {/* <PrivateRouter exact path="/pm/:pmId" component={SinglePm} /> */}
     </Switch>

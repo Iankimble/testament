@@ -3,7 +3,7 @@ import { isAuthenticated } from "../auth/Index";
 // import { Redirect, Link } from "react-router-dom";
 import { read } from "./User-Api";
 import SubProfileMenu from "./SubProfileMenu";
-import { allUserPm } from "../prayers/prayer-api";
+import { allPrayers } from "../prayers/prayer-api";
 import { Jumbotron } from "react-bootstrap";
 
 class Profile extends Component {
@@ -13,7 +13,7 @@ class Profile extends Component {
       user: "",
       redirectToSignin: false,
       error: "",
-      pm: [],
+      prayers: [],
       dailyBread: [],
       isLoaded: false
     };
@@ -33,11 +33,11 @@ class Profile extends Component {
 
   loadData = userId => {
     const token = isAuthenticated().token;
-    allUserPm(userId, token).then(data => {
+    allPrayers(userId, token).then(data => {
       if (data.error) {
         console.log(data.error);
       } else {
-        this.setState({ pm: data });
+        this.setState({ prayers: data });
       }
     });
   };
@@ -54,7 +54,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { pm } = this.state;
+    const { prayers } = this.state;
 
     return (
       <div>
@@ -70,7 +70,7 @@ class Profile extends Component {
 
         <div>
           <p>
-            <SubProfileMenu pm={pm} />
+            <SubProfileMenu prayers={prayers} />
           </p>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { Card, CardGroup, Button } from "react-bootstrap";
 
 class SubProfileMenu extends Component {
   render() {
-    const { pm } = this.props;
+    const { prayers } = this.props;
     return (
       <div>
         <CardGroup>
@@ -15,23 +15,23 @@ class SubProfileMenu extends Component {
                 Main Prayers
               </Card.Title>
               <Card.Text style={{ textAlign: "center", fontSize: "75px" }}>
-                {pm.length}
+                {prayers.length}
               </Card.Text>
-              <div style={{ marginBottom: "5px" }}>
-                <Link to="all/pm/:userId">
-                  <Button size="lg" block>
-                    View all prayers
-                  </Button>
-                </Link>
-              </div>
-              <div style={{ marginTop: "5px" }}>
-                <Link to="/pm/:pmId">
-                  <Button size="lg" block>
-                    Create new prayer
-                  </Button>
-                </Link>
-              </div>
             </Card.Body>
+            <div style={{ marginBottom: "5px" }}>
+              <Link to="all/pm/:userId">
+                <Button size="lg" block>
+                  View all prayers
+                </Button>
+              </Link>
+            </div>
+            <div style={{ marginTop: "5px" }}>
+              <Link to="/pm/:pmId">
+                <Button size="lg" block>
+                  Create new prayer
+                </Button>
+              </Link>
+            </div>
             <Card.Footer style={{ textAlign: "center" }}>
               <small>Last updated...</small>
             </Card.Footer>
@@ -41,45 +41,30 @@ class SubProfileMenu extends Component {
           <Card>
             <Card.Body>
               <Card.Title style={{ textAlign: "center" }}>
-                Prayers for others
+                current most recent prayer title
               </Card.Title>
               <Card.Text style={{ textAlign: "center", fontSize: "75px" }}>
-                0
+                {/* <p> {prayers.map}</p> */}
+                {prayers.map((post, i) => (
+                  <div key={i}>
+                    <div>
+                      <Link to={`/post/${post._id}`}>
+                        <div>
+                          <p className="lead">{post.title}</p>
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
+                ))}
               </Card.Text>
-              <div>
-                <Button size="lg" block>
-                  View all prayers
-                </Button>
-                <Button size="lg" block>
-                  Create new prayer
-                </Button>
-              </div>
             </Card.Body>
+            <div>
+              <Button size="lg" block>
+                Review Prayer
+              </Button>
+            </div>
             <Card.Footer style={{ textAlign: "center" }}>
               <small>Last updated... </small>
-            </Card.Footer>
-          </Card>
-
-          {/** thanks and praise */}
-          <Card>
-            <Card.Body>
-              <Card.Title style={{ textAlign: "center" }}>
-                Thanks and praise
-              </Card.Title>
-              <Card.Text style={{ textAlign: "center", fontSize: "75px" }}>
-                0
-              </Card.Text>
-              <div>
-                <Button size="lg" block>
-                  View all prayers
-                </Button>
-                <Button size="lg" block>
-                  Create new prayer
-                </Button>
-              </div>
-            </Card.Body>
-            <Card.Footer style={{ textAlign: "center" }}>
-              <small>Last updated...</small>
             </Card.Footer>
           </Card>
         </CardGroup>

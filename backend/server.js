@@ -16,7 +16,7 @@ const app = express();
 // Routes
 const authRoutes = require("./routes/auth-route");
 const userRoutes = require("./routes/user-route");
-const mainPrayerRoutes = require("./routes/pm-routes");
+const prayerRoutes = require("./routes/prayer-routes");
 const dailyBreadRoute = require("./routes/dailyBread-route");
 
 // Middleware
@@ -27,7 +27,7 @@ app.use(expressValidator());
 app.use(cors());
 app.use("/", authRoutes);
 app.use("/", userRoutes);
-app.use("/", mainPrayerRoutes);
+app.use("/", prayerRoutes);
 app.use("/", dailyBreadRoute);
 
 app.use((err, req, res, next) => {

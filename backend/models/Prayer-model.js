@@ -3,8 +3,8 @@ const { ObjectId } = mongoose.Schema;
 
 // Model to make a prayer for a person/people
 
-const prayMainSchema = new mongoose.Schema({
-  prayerTitle: {
+const prayer = new mongoose.Schema({
+  title: {
     type: String,
     required: true
   },
@@ -16,12 +16,11 @@ const prayMainSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  createdBy: {
+  postedBy: {
     type: ObjectId,
     ref: "User"
   },
-  append: [{ msg: String, madeOn: { type: Date, default: Date.now } }],
   updated: Date
 });
 
-module.exports = mongoose.model("PrayMain", prayMainSchema);
+module.exports = mongoose.model("prayer", prayer);
