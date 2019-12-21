@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth/Index";
-import { allPrayers } from "./prayer-api";
+import { allPrayers, singlePrayer } from "./prayer-api";
 import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 
@@ -9,7 +9,6 @@ class AllPrayers extends Component {
     super();
     this.state = {
       prayers: [],
-      page: 1,
       error: ""
     };
   }
@@ -23,9 +22,9 @@ class AllPrayers extends Component {
       } else {
         this.setState({ prayers: data });
       }
-      console.log(this.state.prayers);
+      // console.log(this.state.prayers);
       let prayArray = this.state.prayers.reverse();
-      console.log(prayArray);
+      // console.log(prayArray);
     });
   }
 
@@ -33,21 +32,23 @@ class AllPrayers extends Component {
     return (
       <div>
         <br />
-        {prayers.reverse().map((prayer, i) => {
-          const userId = prayer.createdBy;
+        {prayers.reverse().map((prayers, i) => {
           return (
             <div key={i}>
               <div>
                 <Card style={{ width: "18rem" }}>
                   <Card.Body>
-                    <Card.Title>{prayer.title}</Card.Title>
-                    <Card.Text>{prayer.body}</Card.Text>
-                    <Link to={`/prayer/${prayer._id}`}>
+                    <Card.Title>{prayers.title}</Card.Title>
+                    <Card.Text>
+                      {prayers.body}
+                      <br />
+                    </Card.Text>
+                    <Link to={`/prayer/${prayers._id._id}`}>
                       <Button>View prayer</Button>
                     </Link>
                   </Card.Body>
                   <Card.Footer>
-                    Created on {new Date(prayer.createdOn).toDateString()}
+                    Created on {new Date(prayers.createdOn).toDateString()}
                   </Card.Footer>
                 </Card>
                 <br />

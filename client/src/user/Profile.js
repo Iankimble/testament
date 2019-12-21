@@ -41,9 +41,9 @@ class Profile extends Component {
         this.setState({ prayers: data });
       }
       const prayerArray = this.state.prayers;
-      console.log(prayerArray);
+      // console.log(prayerArray);
       const last = prayerArray[prayerArray.length - 1];
-      console.log(last);
+      // console.log(last);
       this.setState({ last: last });
     });
   };
@@ -51,7 +51,7 @@ class Profile extends Component {
   componentDidMount() {
     const userId = this.props.match.params.userId;
     this.init(userId);
-    console.log(this.props.match.params.userId);
+    // console.log(this.props.match.params.userId);
   }
 
   componentWillReceiveProps(props) {

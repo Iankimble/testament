@@ -20,7 +20,7 @@ const router = express.Router();
 router.get("/all/prayers/:userId", requireSignin, allUserPrayers);
 
 // get a prayer by id (require user signin, get a single prayer)
-router.get("/prayer/:prayerId", requireSignin, singlePrayer);
+router.get("/prayer/:prayerId", singlePrayer);
 
 // user creates prayer (require user signin, create data)
 router.post("/new/prayer/:userId", requireSignin, createPrayer);

@@ -28,16 +28,6 @@ export const allPrayers = (userId, token) => {
     .catch(err => console.log(err));
 };
 
-export const singlePmPrayer = postId => {
-  return fetch(`${process.env.REACT_APP_API_URL}/post/${postId}`, {
-    method: "GET"
-  })
-    .then(response => {
-      return response.json();
-    })
-    .catch(err => console.log(err));
-};
-
 export const createPrayer = (userId, token, data) => {
   return fetch(`${process.env.REACT_APP_API_URL}/new/prayer/${userId}`, {
     method: "POST",
@@ -53,7 +43,7 @@ export const createPrayer = (userId, token, data) => {
     .catch(err => console.log(err));
 };
 
-export const singlePrayer = prayerId => {
+export const single = prayerId => {
   return fetch(`${process.env.REACT_APP_API_URL}/prayer/${prayerId}`, {
     method: "GET"
   })
@@ -62,15 +52,3 @@ export const singlePrayer = prayerId => {
     })
     .catch(err => console.log(err));
 };
-
-//////////////////////////
-
-// export const list = page => {
-//   return fetch(`${process.env.REACT_APP_API_URL}/prayers/?page=${page}`, {
-//     method: "GET"
-//   })
-//     .then(response => {
-//       return response.json();
-//     })
-//     .catch(err => console.log(err));
-// };

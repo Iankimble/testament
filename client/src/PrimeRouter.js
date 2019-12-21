@@ -9,6 +9,7 @@ import PrivateRouter from "./auth/PrivateRouter";
 
 import CreatePrayer from "./prayers/CreatePrayer";
 import AllPrayers from "./prayers/AllPrayers";
+import SinglePrayer from "./prayers/SinglePrayer";
 
 const PrimeRouter = () => (
   <div>
@@ -26,6 +27,7 @@ const PrimeRouter = () => (
         component={CreatePrayer}
       />
       <PrivateRouter exact path="/all/prayers/:userId" component={AllPrayers} />
+      <Route exact path="/prayer/:prayerId" component={SinglePrayer} />
     </Switch>
   </div>
 );

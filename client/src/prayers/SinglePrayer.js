@@ -1,40 +1,26 @@
 import React, { Component } from "react";
-import { SinglePrayer, singlePrayer } from "./prayer-api";
-import { isAuthenticated } from "../auth/Index";
+import { single } from "./prayer-api";
 
 class SinglePrayer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      prayer: "",
-      error: ""
-    };
-  }
+  state = {
+    prayer: ""
+  };
 
   componentDidMount = () => {
-    const postId = this.props.match.params.postId;
-    singlePrayer(postId).then(data => {
-      if (data.error) {
-        console.log(data.error);
+    const prayerId = this.props.match.params.prayerId;
+    single(prayerId).then(data => {
+      if (data.err) {
+        console.log(data.err);
       } else {
-        this.setState({
-          prayer: data
-        });
+        this.setState({ prayer: data });
       }
+      console.log(this.state.prayer);
     });
   };
 
-  renderPrayer = prayer => {
-    return (
-      <div>
-        <h2>{prayer.title}</h2>
-        <p>{prayer.body}</p>
-      </div>
-    );
-  };
-
   render() {
-    const { prayer } = this.state;
-    return <div>{this.renderPrayer(prayer)}</div>;
+    return <div>{this.props.match.params.prayerId}</div>;
   }
 }
+
+export default SinglePrayer;

@@ -4,12 +4,13 @@ const fs = require("fs");
 const formidable = require("formidable");
 
 exports.prayerById = (req, res, next, id) => {
-  Prayer.find(id)
+  Prayer.findById(id)
+    .populate("postedBy", "_id")
     .select("_id title body createdOn")
     .exec((err, prayer) => {
       if (err || !prayer) {
         return res.staus(400).json({
-          msg: "Cant find prayer. Check allUserPraye route -Ian"
+          msg: "Cant find prayer. Check allUserPrayer route -Ian"
         });
       }
       req.prayer = prayer;
@@ -19,7 +20,7 @@ exports.prayerById = (req, res, next, id) => {
 
 exports.allUserPrayers = (req, res) => {
   Prayer.find({ postedBy: req.profile._id })
-    .populate("createdBy _id")
+    .populate("postedBy _id")
     .select("_id title body createdOn")
     .sort("_createdOn")
     .exec((err, prayer) => {
@@ -29,7 +30,7 @@ exports.allUserPrayers = (req, res) => {
         });
       }
       res.json(prayer);
-      console.log(prayer);
+      // console.log(prayer);
     });
 };
 
@@ -66,6 +67,11 @@ exports.createPrayer = (req, res) => {
 exports.singlePrayer = (req, res) => {
   return res.json(req.prayer);
 };
+
+// exports.singlePrayer = (req, res, next) => {
+//   let prayer = Prayer.find(req.prayer);
+//   return res.json(prayer);
+// };
 
 exports.editPrayer = (req, res, next) => {};
 
