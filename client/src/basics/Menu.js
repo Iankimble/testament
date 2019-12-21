@@ -56,17 +56,21 @@ const Menu = ({ history }) => (
                 )}
                 to={`/new/prayer/${isAuthenticated().user._id}`}
               >
-                Create a prayer
+                Create a Prayer
               </Link>
-            </Nav.Link>
-            {/* 
-            <Nav.Link>
-              <Link style={isActive(history, "/")}>Prayers for others</Link>
             </Nav.Link>
 
             <Nav.Link>
-              <Link style={isActive(history, "/")}>Thanks and praise</Link>
-            </Nav.Link> */}
+              <Link
+                style={isActive(
+                  history,
+                  `all/prayers/${isAuthenticated().user._id}`
+                )}
+                to={`/all/prayers/${isAuthenticated().user._id}`}
+              >
+                Veiw all Prayers
+              </Link>
+            </Nav.Link>
 
             <Nav style={{ display: "flex", marginLeft: "auto" }}>
               <Button

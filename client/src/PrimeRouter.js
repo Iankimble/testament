@@ -8,10 +8,7 @@ import Profile from "./user/Profile";
 import PrivateRouter from "./auth/PrivateRouter";
 
 import CreatePrayer from "./prayers/CreatePrayer";
-// import SinglePm from "./prayers/SinglePm";
-// import EditPm from "/";
-// import DeletePm from "/";
-// import AllPmPrayers from "./prayers/AllPmPrayers";
+import AllPrayers from "./prayers/AllPrayers";
 
 const PrimeRouter = () => (
   <div>
@@ -23,14 +20,12 @@ const PrimeRouter = () => (
       <Route exact path="/signin" component={Signin} />
 
       <PrivateRouter exact path="/user/:userId" component={Profile} />
-      {/* <Route exact path="/all/pm/:userId" component={AllPmPrayers} /> */}
       <PrivateRouter
         exact
         path="/new/prayer/:userId"
         component={CreatePrayer}
       />
-
-      {/* <PrivateRouter exact path="/pm/:pmId" component={SinglePm} /> */}
+      <PrivateRouter exact path="/all/prayers/:userId" component={AllPrayers} />
     </Switch>
   </div>
 );

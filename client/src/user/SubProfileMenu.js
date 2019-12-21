@@ -4,7 +4,7 @@ import { Card, CardGroup, Button } from "react-bootstrap";
 
 class SubProfileMenu extends Component {
   render() {
-    const { prayers } = this.props;
+    const { prayers, last } = this.props;
     return (
       <div>
         <CardGroup>
@@ -32,9 +32,6 @@ class SubProfileMenu extends Component {
                 </Button>
               </Link>
             </div>
-            <Card.Footer style={{ textAlign: "center" }}>
-              <small>Last updated...</small>
-            </Card.Footer>
           </Card>
 
           {/**prayers for others */}
@@ -44,28 +41,18 @@ class SubProfileMenu extends Component {
                 current most recent prayer title
               </Card.Title>
               <Card.Text style={{ textAlign: "center", fontSize: "75px" }}>
-                {/* <p> {prayers.map}</p> */}
-                {prayers.map((post, i) => (
-                  <div key={i}>
-                    <div>
-                      <Link to={`/post/${post._id}`}>
-                        <div>
-                          <p className="lead">{post.title}</p>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-                ))}
+                <p>
+                  <h2>{last.title}</h2>
+                  <h5>{last.body}</h5>
+                </p>
               </Card.Text>
             </Card.Body>
             <div>
               <Button size="lg" block>
-                Review Prayer
+                <Link to={``} />
+                View Prayer
               </Button>
             </div>
-            <Card.Footer style={{ textAlign: "center" }}>
-              <small>Last updated... </small>
-            </Card.Footer>
           </Card>
         </CardGroup>
       </div>
