@@ -52,3 +52,19 @@ export const single = prayerId => {
     })
     .catch(err => console.log(err));
 };
+
+export const update = (prayerId, token, prayer) => {
+  console.log(prayerId, token, prayer);
+  return fetch(`${process.env.REACT_APP_API_URL}/prayer/${prayerId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: prayer
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => console.log(err));
+};
