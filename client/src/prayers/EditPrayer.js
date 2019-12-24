@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Form, Col } from "react-bootstrap";
 import { isAuthenticated } from "../auth/Index";
 import { single, update } from "./prayer-api";
 
@@ -16,7 +16,8 @@ class EditPrayer extends Component {
     };
   }
 
-  init = prayerId => {
+  init = () => {
+    const prayerId = this.props.match.params.prayerId;
     single(prayerId).then(data => {
       if (data.error) {
         console.log(data.error);
@@ -85,36 +86,37 @@ class EditPrayer extends Component {
   };
 
   editPrayerForm = (title, body) => (
-    <form>
-      <div>
-        <label>Post Photo</label>
-        <input
-          onChange={this.handleChange("photo")}
-          type="file"
-          accept="image/*"
-          className="form-control"
-        />
-      </div>
-      <div>
-        <label>Title</label>
-        <input
-          onChange={this.handleChange("title")}
-          type="text"
-          value={title}
-        />
-      </div>
+    <div style={{ margin: "10px" }}>
+      <h2 style={{ textAlign: "center" }}> Edit prayer</h2>
+      <Form>
+        <Form.Row>
+          <Col>
+            <Form.Label>Title</Form.Label>
+            <Form.Control
+              onChange={this.handleChange("title")}
+              type="text"
+              value={title}
+            />
+          </Col>
+        </Form.Row>
+        <Form.Row>
+          <Col>
+            <Form.Label>Prayer</Form.Label>
+            <Form.Control
+              style={{ height: "300px" }}
+              as="textarea"
+              onChange={this.handleChange("body")}
+              type="text"
+              value={body}
+            />
+          </Col>
+        </Form.Row>
 
-      <div className="form-group">
-        <label>Body</label>
-        <textarea
-          onChange={this.handleChange("body")}
-          type="text"
-          value={body}
-        />
-      </div>
-
-      <button onClick={this.clickSubmit}>Update Prayer</button>
-    </form>
+        <Button size="lg" block onClick={this.clickSubmit}>
+          Update Prayer
+        </Button>
+      </Form>
+    </div>
   );
 
   render() {
@@ -122,7 +124,7 @@ class EditPrayer extends Component {
 
     return (
       <div>
-        <h2>{title}</h2>
+        <h2></h2>
 
         {isAuthenticated().user._id === id && this.editPrayerForm(title, body)}
       </div>

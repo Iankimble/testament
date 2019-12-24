@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth/Index";
 import { createPrayer } from "./prayer-api";
-import { Redirect } from "react-router-dom";
 import { Form, Button, Col } from "react-bootstrap";
 
 class CreatePrayer extends Component {
@@ -14,7 +13,6 @@ class CreatePrayer extends Component {
       error: "",
       user: {},
       fileSize: 0,
-      loading: false,
       redirectToProfile: false
     };
   }
@@ -72,22 +70,28 @@ class CreatePrayer extends Component {
   };
 
   newPrayerForm = (title, body) => (
-    <div>
+    <div style={{ margin: "10px" }}>
+      <h2 style={{ textAlign: "center" }}> Create a prayer</h2>
+      <hr />
       <form>
         <Form.Row>
           <Col>
             <Form.Label>Title</Form.Label>
             <Form.Control
-              placeholder="Title"
+              placeholder="Please give your prayer a title"
               type="text"
               onChange={this.handleChange("title")}
               value={title}
             />
           </Col>
+        </Form.Row>
+        <Form.Row>
           <Col>
             <Form.Label>Prayer</Form.Label>
             <Form.Control
-              placeholder=" Prayer"
+              style={{ height: "300px" }}
+              as="textarea"
+              placeholder={` Type your prayer here. Whether it's concerning a certain issue in your life or someone elses, reflection on scripture, or giving the LORD thanks and praise.`}
               type="text"
               onChange={this.handleChange("body")}
               value={body}
@@ -95,8 +99,10 @@ class CreatePrayer extends Component {
           </Col>
         </Form.Row>
       </form>
-
-      <Button onClick={this.clickSubmit}>Create Prayer</Button>
+      <br />
+      <Button size="lg" block onClick={this.clickSubmit}>
+        Create Prayer
+      </Button>
     </div>
   );
 

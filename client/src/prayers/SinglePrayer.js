@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { single } from "./prayer-api";
-import { Link } from "react-router-dom";
+import { single, remove } from "./prayer-api";
+import { isAuthenticated } from "../auth/Index";
+import { Link, Redirect } from "react-router-dom";
 import {
   Jumbotron,
   Button,
@@ -11,10 +12,13 @@ import {
   Col,
   ButtonToolbar
 } from "react-bootstrap";
+import Profile from "../user/Profile";
 
 class SinglePrayer extends Component {
   state = {
-    prayer: ""
+    prayer: "",
+    userId: "",
+    redirectToHome: false
   };
 
   componentDidMount = () => {
@@ -29,7 +33,35 @@ class SinglePrayer extends Component {
     });
   };
 
+  deletePrayer = () => {
+    const userId = isAuthenticated().user._id;
+    const prayerId = this.props.match.params.prayerId;
+    const token = isAuthenticated().token;
+    this.setState({
+      userId: userId
+    });
+    console.log(this.state.userId);
+    remove(prayerId, token).then(data => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        this.setState({ redirectToHome: true });
+      }
+    });
+  };
+
+  deleteConfirmed = () => {
+    let answer = window.confirm("Are you sure you want to delete this prayer?");
+    if (answer) {
+      this.deletePrayer();
+    }
+  };
+
   render() {
+    const { prayer, redirectToHome, userId } = this.state;
+    if (redirectToHome) {
+      return <Redirect to={`user/${userId}`} />;
+    }
     return (
       <div>
         <Container>
@@ -86,6 +118,7 @@ class SinglePrayer extends Component {
                       textAlign: "center",
                       justifyContent: "center"
                     }}
+                    onClick={this.deleteConfirmed}
                   >
                     Delete prayer
                   </Button>

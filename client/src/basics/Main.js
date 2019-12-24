@@ -7,6 +7,10 @@ const Main = () => (
     <Jumbotron fluid style={{ height: "70vh" }}>
       <Container>
         <h1 style={{ textAlign: "center" }}>Welcome to Testament</h1>
+        <h5 style={{ textAlign: "center" }}>
+          {" "}
+          <i>The digital prayer journal</i>{" "}
+        </h5>
         <p style={{ textAlign: "center" }}>brief blurb about the page</p>
       </Container>
     </Jumbotron>

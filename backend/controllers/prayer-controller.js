@@ -68,11 +68,45 @@ exports.singlePrayer = (req, res) => {
   return res.json(req.prayer);
 };
 
-// exports.singlePrayer = (req, res, next) => {
-//   let prayer = Prayer.find(req.prayer);
-//   return res.json(prayer);
-// };
+exports.editPrayer = (req, res, next) => {
+  let form = new formidable.IncomingForm();
+  form.keepExtensions = true;
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      return res.status(400).json({
+        error: "Photo could not be uploaded"
+      });
+    }
+    let prayer = req.prayer;
+    prayer = _.extend(prayer, fields);
+    prayer.updated = Date.now();
 
-exports.editPrayer = (req, res, next) => {};
+    if (files.photo) {
+      prayer.photo.data = fs.readFileSync(files.photo.path);
+      prayer.photo.contentType = files.photo.type;
+    }
 
-exports.deletPrayer = (req, res, next) => {};
+    prayer.save((err, result) => {
+      if (err) {
+        return res.status(400).json({
+          error: err
+        });
+      }
+      res.json(prayer);
+    });
+  });
+};
+
+exports.deletPrayer = (req, res, next) => {
+  let prayer = req.prayer;
+  prayer.remove((err, prayer) => {
+    if (err) {
+      return res.status(400).json({
+        error: err
+      });
+    }
+    res.json({
+      message: "Prayer removed successfully"
+    });
+  });
+};

@@ -16,7 +16,8 @@ class Profile extends Component {
       prayers: [],
       dailyBread: [],
       isLoaded: false,
-      last: {}
+      last: {},
+      lastId: ""
     };
   }
 
@@ -43,8 +44,12 @@ class Profile extends Component {
       const prayerArray = this.state.prayers;
       // console.log(prayerArray);
       const last = prayerArray[prayerArray.length - 1];
-      // console.log(last);
+
+      console.log(last);
       this.setState({ last: last });
+      let lastId = last._id._id;
+      console.log(last._id._id);
+      this.setState({ lastId: lastId });
     });
   };
 
@@ -60,7 +65,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { prayers, last } = this.state;
+    const { prayers, last, lastId } = this.state;
 
     return (
       <div>
@@ -76,7 +81,7 @@ class Profile extends Component {
 
         <div>
           <p>
-            <SubProfileMenu prayers={prayers} last={last} />
+            <SubProfileMenu prayers={prayers} last={last} lastId={lastId} />
           </p>
         </div>
       </div>
