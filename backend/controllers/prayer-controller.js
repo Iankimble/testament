@@ -110,3 +110,66 @@ exports.deletPrayer = (req, res, next) => {
     });
   });
 };
+
+//
+///
+//
+//
+//
+//
+//
+// with pagination
+exports.allUserPrayersPagination = (req, res) => {
+  const page = parseInt(req.query.page);
+  const limit = parseInt(req.query.limit);
+
+  const statIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+
+  const result = {};
+
+  // if (endIndex < prayer.length) {
+  result.next = {
+    page: page + 1,
+    limit: limit
+  };
+  // }
+
+  // next = {
+  //   page: page + 1,
+  //   limit: limit
+  // };
+
+  // if (statIndex > 0) {
+  result.previous = {
+    page: page - 1,
+    limit: limit
+  };
+  // }
+
+  // previous = {
+  //   page: page - 1,
+  //   limit: limit
+  // };
+
+  Prayer.find({ postedBy: req.profile._id })
+    .populate("postedBy _id")
+    .select("_id title body createdOn")
+    .sort("_createdOn")
+    .exec((err, prayer) => {
+      if (err) {
+        return res.status(400).json({
+          err: "err"
+        });
+      }
+      // res.json(prayer);
+      // console.log(prayer);
+
+      result.praydata = prayer.slice(statIndex, endIndex);
+      // praydata = prayer.slice(statIndex, endIndex);
+      // res.json(prayerdata);
+      // console.log(prayer.slice(statIndex, endIndex));
+      res.json(result);
+      console.log(result);
+    });
+};

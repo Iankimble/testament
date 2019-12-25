@@ -4,6 +4,9 @@ import { signout, isAuthenticated } from "../auth/Index";
 
 import { Navbar, Nav, Button } from "react-bootstrap";
 
+let page = 1;
+let limit = 4;
+
 const isActive = (history, path) => {
   if (history.location.pathname === path) return {};
   else return {};
@@ -66,7 +69,10 @@ const Menu = ({ history }) => (
                   history,
                   `all/prayers/${isAuthenticated().user._id}`
                 )}
-                to={`/all/prayers/${isAuthenticated().user._id}`}
+                // to={`/all/prayers/${isAuthenticated().user._id}`}
+                to={`/all/${
+                  isAuthenticated().user._id
+                }?page=${page}&limit=${limit}`}
               >
                 Veiw all Prayers
               </Link>

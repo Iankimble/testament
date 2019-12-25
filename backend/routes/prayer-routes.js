@@ -7,7 +7,8 @@ const {
   singlePrayer,
   editPrayer,
   deletPrayer,
-  appendPrayer
+  appendPrayer,
+  allUserPrayersPagination
 } = require("../controllers/prayer-controller");
 
 const { requireSignin } = require("../controllers/auth-controller");
@@ -18,6 +19,10 @@ const router = express.Router();
 
 // get all users pm prayers (require user signin, get all data)
 router.get("/all/prayers/:userId", requireSignin, allUserPrayers);
+
+// get all user prayers with pagination------------------------------
+router.get("/all/:userId", requireSignin, allUserPrayersPagination);
+//------------------------------------------------------------------
 
 // get a prayer by id (require user signin, get a single prayer)
 router.get("/prayer/:prayerId", singlePrayer);

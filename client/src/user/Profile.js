@@ -38,6 +38,8 @@ class Profile extends Component {
     allPrayers(userId, token).then(data => {
       if (data.error) {
         console.log(data.error);
+      } else if (!data) {
+        this.setState({ prayers: 0 });
       } else {
         this.setState({ prayers: data });
       }

@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth/Index";
-import { allPrayers, singlePrayer } from "./prayer-api";
+import { allPrayers, list } from "./prayer-api";
 import { Link } from "react-router-dom";
-import { Card, Button } from "react-bootstrap";
+import {
+  Card,
+  Button,
+  CardGroup,
+  CardDeck,
+  CardColumns,
+  Row
+} from "react-bootstrap";
 
 class AllPrayers extends Component {
   constructor() {
@@ -12,6 +19,7 @@ class AllPrayers extends Component {
       error: ""
     };
   }
+
   componentDidMount() {
     const userId = isAuthenticated().user._id;
     const token = isAuthenticated().token;
@@ -24,7 +32,16 @@ class AllPrayers extends Component {
       }
       // console.log(this.state.prayers);
       let prayArray = this.state.prayers.reverse();
-      // console.log(prayArray);
+      // console.log(prayArray)
+      //
+      //
+      //
+      //
+      //
+      //
+      for (let i = 0; i < prayArray.length; i += 3) {
+        console.log(prayArray[i]);
+      }
     });
   }
 
@@ -35,22 +52,40 @@ class AllPrayers extends Component {
         {prayers.reverse().map((prayers, i) => {
           return (
             <div key={i}>
-              <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Body>
-                    <Card.Title>{prayers.title}</Card.Title>
-                    <Card.Text>
-                      {prayers.body}
-                      <br />
-                    </Card.Text>
-                    <Link to={`/prayer/${prayers._id._id}`}>
-                      <Button>View prayer</Button>
-                    </Link>
-                  </Card.Body>
-                  <Card.Footer>
-                    Created on {new Date(prayers.createdOn).toDateString()}
-                  </Card.Footer>
-                </Card>
+              <div
+                style={{
+                  alignContent: "center",
+                  textAlign: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <CardGroup>
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Body>
+                      <Card.Title>{prayers.title}</Card.Title>
+                      <hr />
+                      <Card.Text>
+                        <p
+                          style={{
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            padding: "5px"
+                          }}
+                        >
+                          {prayers.body}
+                        </p>
+                        <br />
+                      </Card.Text>
+                      <Link to={`/prayer/${prayers._id._id}`}>
+                        <Button>View more</Button>
+                      </Link>
+                    </Card.Body>
+                    <Card.Footer>
+                      Created on {new Date(prayers.createdOn).toDateString()}
+                    </Card.Footer>
+                  </Card>
+                </CardGroup>
                 <br />
               </div>
             </div>
@@ -59,9 +94,60 @@ class AllPrayers extends Component {
       </div>
     );
   };
+  //
+  //
+  //
+  //
+  //
+  // noPrayers = () => {
+  //   return (
+  //     <div>
+  //       <br />
+  //       return (
+  //       <div>
+  //         <div
+  //           style={{
+  //             alignContent: "center",
+  //             textAlign: "center",
+  //             justifyContent: "center"
+  //           }}
+  //         >
+  //           <CardGroup>
+  //             <Card style={{ width: "18rem" }}>
+  //               <Card.Body>
+  //                 <Card.Title>Add somthing</Card.Title>
+  //                 <hr />
+  //                 <Card.Text>
+  //                   <p
+  //                     style={{
+  //                       whiteSpace: "nowrap",
+  //                       overflow: "hidden",
+  //                       textOverflow: "ellipsis",
+  //                       padding: "5px"
+  //                     }}
+  //                   >
+  //                     No data
+  //                   </p>
+  //                   <br />
+  //                 </Card.Text>
+  //                 <Link to="">
+  //                   <Button>View more</Button>
+  //                 </Link>
+  //               </Card.Body>
+  //               <Card.Footer>Created on</Card.Footer>
+  //             </Card>
+  //           </CardGroup>
+  //           <br />
+  //         </div>
+  //       </div>
+  //       );
+  //     </div>
+  //   );
+  // };
 
   render() {
     const { prayers } = this.state;
+
     return <div>{this.renderPrayers(prayers)}</div>;
   }
 }

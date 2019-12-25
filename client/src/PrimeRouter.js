@@ -11,6 +11,9 @@ import CreatePrayer from "./prayers/CreatePrayer";
 import AllPrayers from "./prayers/AllPrayers";
 import SinglePrayer from "./prayers/SinglePrayer";
 import EditPrayer from "./prayers/EditPrayer";
+//pagination
+import Ap from "./prayers/Ap";
+
 const PrimeRouter = () => (
   <div>
     <Menu />
@@ -27,6 +30,11 @@ const PrimeRouter = () => (
         component={CreatePrayer}
       />
       <PrivateRouter exact path="/all/prayers/:userId" component={AllPrayers} />
+
+      {/* pagination*/}
+      <Route exact path="/all/:userId" component={Ap} />
+      {/** pagination */}
+
       <Route exact path="/prayer/:prayerId" component={SinglePrayer} />
       <PrivateRouter
         exact

@@ -83,3 +83,34 @@ export const remove = (prayerId, token) => {
     })
     .catch(err => console.log(err));
 };
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+export const allPg = (userId, token, page, limit) => {
+  return fetch(
+    `${process.env.REACT_APP_API_URL}/all/${userId}?page=${page}&limit=${limit}`,
+    {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    }
+  )
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => console.log(err));
+};
