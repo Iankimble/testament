@@ -6,10 +6,12 @@ const formidable = require("formidable");
 exports.prayerById = (req, res, next, id) => {
   Prayer.findById(id)
     .populate("postedBy", "_id")
-    .select("_id title body createdOn")
+    .populate("notes.postedBy", "_id")
+    .populate("postedBy", "_id")
+    .select("_id title body createdOn notes")
     .exec((err, prayer) => {
       if (err || !prayer) {
-        return res.staus(400).json({
+        return res.status(400).json({
           msg: "Cant find prayer. Check allUserPrayer route -Ian"
         });
       }
@@ -49,10 +51,10 @@ exports.createPrayer = (req, res) => {
     req.profile.salt = undefined;
     post.postedBy = req.profile;
 
-    if (files.photo) {
-      post.photo.data = fs.readFileSync(files.photo.path);
-      post.photo.contentType = files.photo.type;
-    }
+    // if (files.photo) {
+    //   post.photo.data = fs.readFileSync(files.photo.path);
+    //   post.photo.contentType = files.photo.type;
+    // }
     post.save((err, result) => {
       if (err) {
         return res.status(400).json({
@@ -172,12 +174,13 @@ exports.addNote = (req, res) => {
   let note = req.body.note;
   note.postedBy = req.body.userId;
 
-  Prayer.findbyIdAndUpdate(
+  Prayer.findByIdAndUpdate(
     req.body.prayerId,
     { $push: { notes: note } },
     { new: true }
   )
     .populate("notes.postedBy", "_id")
+    .populate("postedBy", "_id")
     .exec((err, result) => {
       if (err) {
         return res.status(400).json({
@@ -189,7 +192,7 @@ exports.addNote = (req, res) => {
     });
 };
 
-exports.editNote = (req, res) => {
+exports.updateNote = (req, res) => {
   let note = req.body.note;
 
   Prayer.findByIdAndUpdate(req.body.prayerId, {
@@ -225,10 +228,10 @@ exports.removeNote = (req, res) => {
 
   Prayer.findByIdAndUpdate(
     req.body.postId,
-    { $pull: { note: { _id: note._id } } },
+    { $pull: { notes: { _id: note._id } } },
     { new: true }
   )
-    .populate("notess.postedBy", "_id ")
+    .populate("notes.postedBy", "_id ")
     .populate("postedBy", "_id ")
     .exec((err, result) => {
       if (err) {

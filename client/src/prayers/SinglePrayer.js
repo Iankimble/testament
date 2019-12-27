@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { single, remove } from "./prayer-api";
 import { isAuthenticated } from "../auth/Index";
 import { Link, Redirect } from "react-router-dom";
+import PrayerNote from "./PrayerNotes";
 import {
   Jumbotron,
   Button,
@@ -18,7 +19,10 @@ class SinglePrayer extends Component {
   state = {
     prayer: "",
     userId: "",
-    redirectToHome: false
+    redirectToHome: false,
+    notes: [],
+    error: "",
+    prayerId: ""
   };
 
   componentDidMount = () => {
@@ -27,10 +31,20 @@ class SinglePrayer extends Component {
       if (data.err) {
         console.log(data.err);
       } else {
-        this.setState({ prayer: data });
+        this.setState({
+          prayer: data,
+          notes: data.notes,
+          prayerId: data._id
+        });
       }
       console.log(this.state.prayer);
+      console.log(this.state.notes);
+      console.log(this.state.prayerId);
     });
+  };
+
+  updateNotes = notes => {
+    this.setState({ notes });
   };
 
   deletePrayer = () => {
@@ -58,7 +72,7 @@ class SinglePrayer extends Component {
   };
 
   render() {
-    const { prayer, redirectToHome, userId } = this.state;
+    const { prayer, redirectToHome, userId, notes, prayerId } = this.state;
     if (redirectToHome) {
       return <Redirect to={`user/${userId}`} />;
     }
@@ -79,12 +93,11 @@ class SinglePrayer extends Component {
               margin: "5px"
             }}
           >
-            <Row>
+            {/* <Row>
               <Button variant="info" size="lg" block>
                 Add testament
               </Button>
-            </Row>
-            <br />
+            </Row> */}
             <Row
               style={{
                 alignContent: "center",
@@ -127,6 +140,14 @@ class SinglePrayer extends Component {
             </Row>
           </div>
         </Container>
+
+        <div>
+          <PrayerNote
+            prayerId={prayerId}
+            notes={notes}
+            updateNotes={this.updateNotes}
+          />
+        </div>
       </div>
     );
   }

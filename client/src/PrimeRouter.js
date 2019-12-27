@@ -11,8 +11,10 @@ import CreatePrayer from "./prayers/CreatePrayer";
 import AllPrayers from "./prayers/AllPrayers";
 import SinglePrayer from "./prayers/SinglePrayer";
 import EditPrayer from "./prayers/EditPrayer";
+//-------------------------------------------------//
 //pagination
 import Ap from "./prayers/Ap";
+//-----------------------------------------------//
 
 const PrimeRouter = () => (
   <div>

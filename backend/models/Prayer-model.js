@@ -20,15 +20,15 @@ const prayer = new mongoose.Schema({
     type: ObjectId,
     ref: "User"
   },
-  updated: Date,
-
   notes: [
     {
       text: String,
       created: { type: Date, default: Date.now },
       postedBy: { type: ObjectId, ref: "User" }
     }
-  ]
+  ],
+
+  updated: Date
 });
 
 module.exports = mongoose.model("prayer", prayer);

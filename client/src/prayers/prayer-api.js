@@ -117,7 +117,7 @@ export const allPg = (userId, token, page, limit) => {
 
 export const addNote = (userId, token, prayerId, note) => {
   return fetch(`${process.env.REACT_APP_API_URL}/prayer/addnote`, {
-    method: "PUT",
+    method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",

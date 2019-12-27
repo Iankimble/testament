@@ -42,7 +42,7 @@ getRandomPassage = function() {
         if (err) {
           return err;
         }
-        console.log("success : " + result);
+        // console.log("success : " + result);
       });
     });
   });
@@ -66,7 +66,7 @@ clearPassagefromDaily = function() {
       if (err) {
         return err;
       }
-      console.log("removes success - Ian" + result);
+      // console.log("removes success - Ian" + result);
     });
   });
 };
