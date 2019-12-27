@@ -5,7 +5,7 @@ import { signout, isAuthenticated } from "../auth/Index";
 import { Navbar, Nav, Button } from "react-bootstrap";
 
 let page = 1;
-let limit = 4;
+let limit = 3;
 
 const isActive = (history, path) => {
   if (history.location.pathname === path) return {};

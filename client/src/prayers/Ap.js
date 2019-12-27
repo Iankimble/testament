@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import { allPg } from "./prayer-api";
 import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth/Index";
+import {
+  Card,
+  Button,
+  CardGroup,
+  CardDeck,
+  CardColumns,
+  Row
+} from "react-bootstrap";
 
 class Ap extends Component {
   constructor() {
@@ -15,7 +23,7 @@ class Ap extends Component {
     };
   }
 
-  componentDidMount() {
+  getData = () => {
     const userId = isAuthenticated().user._id;
     const token = isAuthenticated().token;
     const limit = this.state.limit;
@@ -26,25 +34,81 @@ class Ap extends Component {
       } else {
         this.setState({ prayers: data });
       }
-      console.log(this.state.prayers);
+      // console.log(this.state.prayers);
       console.log(this.state.page);
-      let pgDataObj = this.state.prayers;
+      let pgDataObj = this.state.prayers.reverse();
+
       console.log(pgDataObj);
     });
+  };
+
+  loadNext = () => {
+    this.setState({ page: this.state.page + 1 });
+    this.getData();
+    console.log("next");
+    console.log(this.state.page);
+  };
+
+  loadPrev = () => {
+    this.setState({ page: this.state.page - 1 });
+    this.getData();
+    console.log("previous");
+    console.log(this.state.page);
+  };
+
+  componentDidMount() {
+    this.getData(this.state.page);
   }
 
   renderPrayers = prayers => {
     return (
-      <div>
-        {prayers.map((prayer, i) => {
+      <div style={{ margin: "10px" }}>
+        <br />
+        {prayers.map((prayers, i) => {
           return (
             <div key={i}>
-              <div>
-                <h5>{prayer.title}</h5>
-                <p>{prayer.body}</p>
+              <div
+                style={{
+                  alignContent: "center",
+                  textAlign: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <CardGroup
+                  style={{
+                    margin: "0px auto",
+                    float: "none",
+                    display: "flex",
+                    justifyContent: "center"
+                  }}
+                >
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Body>
+                      <Card.Title>{prayers.title}</Card.Title>
+                      <hr />
+                      <Card.Text>
+                        <p
+                          style={{
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            padding: "5px"
+                          }}
+                        >
+                          {prayers.body}
+                        </p>
+                        <br />
+                      </Card.Text>
+                      <Link to={`/prayer/${prayers._id._id}`}>
+                        <Button>View more</Button>
+                      </Link>
+                    </Card.Body>
+                    <Card.Footer>
+                      Created on {new Date(prayers.createdOn).toDateString()}
+                    </Card.Footer>
+                  </Card>
+                </CardGroup>
                 <br />
-
-                <Link>Read more</Link>
               </div>
             </div>
           );
@@ -54,15 +118,34 @@ class Ap extends Component {
   };
 
   render() {
-    const { prayers, page } = this.state;
+    const { prayers } = this.state;
     return (
-      <div>
-        <h6>on</h6>
+      <div style={{ margin: "10px" }}>
+        <h2 style={{ textAlign: "center" }}>All Prayers</h2>
 
-        {/* {this.renderPrayers(prayers)} */}
-        <button> prev</button>
-
-        <button> next</button>
+        {this.renderPrayers(prayers)}
+        <div
+          style={{
+            alignContent: "center",
+            textAlign: "center",
+            justifyContent: "center"
+          }}
+        >
+          <Button
+            size="lg"
+            style={{ width: "200px", margin: "5px" }}
+            onClick={this.loadPrev}
+          >
+            Previous
+          </Button>
+          <Button
+            size="lg"
+            style={{ width: "200px", margin: "5px" }}
+            onClick={this.loadNext}
+          >
+            Next
+          </Button>
+        </div>
       </div>
     );
   }

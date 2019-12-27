@@ -27,3 +27,13 @@ export const listByUser = (userId, token) => {
     })
     .catch(err => console.log(err));
 };
+
+export const dailyBread = () => {
+  return fetch(`${process.env.REACT_APP_API_URL}/dailybread`, {
+    method: "GET"
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => console.log(err));
+};

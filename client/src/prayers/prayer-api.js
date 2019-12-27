@@ -114,3 +114,35 @@ export const allPg = (userId, token, page, limit) => {
     })
     .catch(err => console.log(err));
 };
+
+export const addNote = (userId, token, prayerId, note) => {
+  return fetch(`${process.env.REACT_APP_API_URL}/prayer/addnote`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({ userId, prayerId, note })
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => console.log(err));
+};
+
+export const removeNote = (userId, token, prayerId, note) => {
+  return fetch(`${process.env.REACT_APP_API_URL}/prayer/removenote`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({ userId, prayerId, note })
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => console.log(err));
+};

@@ -94,57 +94,6 @@ class AllPrayers extends Component {
       </div>
     );
   };
-  //
-  //
-  //
-  //
-  //
-  // noPrayers = () => {
-  //   return (
-  //     <div>
-  //       <br />
-  //       return (
-  //       <div>
-  //         <div
-  //           style={{
-  //             alignContent: "center",
-  //             textAlign: "center",
-  //             justifyContent: "center"
-  //           }}
-  //         >
-  //           <CardGroup>
-  //             <Card style={{ width: "18rem" }}>
-  //               <Card.Body>
-  //                 <Card.Title>Add somthing</Card.Title>
-  //                 <hr />
-  //                 <Card.Text>
-  //                   <p
-  //                     style={{
-  //                       whiteSpace: "nowrap",
-  //                       overflow: "hidden",
-  //                       textOverflow: "ellipsis",
-  //                       padding: "5px"
-  //                     }}
-  //                   >
-  //                     No data
-  //                   </p>
-  //                   <br />
-  //                 </Card.Text>
-  //                 <Link to="">
-  //                   <Button>View more</Button>
-  //                 </Link>
-  //               </Card.Body>
-  //               <Card.Footer>Created on</Card.Footer>
-  //             </Card>
-  //           </CardGroup>
-  //           <br />
-  //         </div>
-  //       </div>
-  //       );
-  //     </div>
-  //   );
-  // };
-
   render() {
     const { prayers } = this.state;
 

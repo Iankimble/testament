@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth/Index";
 // import { Redirect, Link } from "react-router-dom";
-import { read } from "./User-Api";
+import { read, dailyBread } from "./User-Api";
 import SubProfileMenu from "./SubProfileMenu";
 import { allPrayers } from "../prayers/prayer-api";
 import { Jumbotron } from "react-bootstrap";
@@ -58,7 +58,21 @@ class Profile extends Component {
   componentDidMount() {
     const userId = this.props.match.params.userId;
     this.init(userId);
+
     // console.log(this.props.match.params.userId);
+
+    //-------------------------------------------------------//
+    dailyBread().then(data => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        this.setState({
+          dailyBread: data[0]
+        });
+        console.log(this.state.dailyBread);
+      }
+    });
+    //-------------------------------------------------------//
   }
 
   componentWillReceiveProps(props) {
@@ -67,7 +81,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { prayers, last, lastId } = this.state;
+    const { prayers, last, lastId, dailyBread } = this.state;
 
     return (
       <div>
@@ -79,6 +93,12 @@ class Profile extends Component {
               <i>The Daily Bread</i>
             </h3>
           </h2>
+          <br />
+          <p style={{ textAlign: "center" }}>
+            <h5> {dailyBread.text} </h5>
+            {dailyBread.book} {dailyBread.chapter}: {dailyBread.verseStart} -
+            {dailyBread.verseEnd}
+          </p>
         </Jumbotron>
 
         <div>

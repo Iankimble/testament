@@ -128,29 +128,15 @@ exports.allUserPrayersPagination = (req, res) => {
 
   const result = {};
 
-  // if (endIndex < prayer.length) {
   result.next = {
     page: page + 1,
     limit: limit
   };
-  // }
 
-  // next = {
-  //   page: page + 1,
-  //   limit: limit
-  // };
-
-  // if (statIndex > 0) {
   result.previous = {
     page: page - 1,
     limit: limit
   };
-  // }
-
-  // previous = {
-  //   page: page - 1,
-  //   limit: limit
-  // };
 
   Prayer.find({ postedBy: req.profile._id })
     .populate("postedBy _id")
@@ -165,11 +151,92 @@ exports.allUserPrayersPagination = (req, res) => {
       // res.json(prayer);
       // console.log(prayer);
 
-      result.praydata = prayer.slice(statIndex, endIndex);
+      result.praydata = prayer.reverse().slice(statIndex, endIndex);
       // praydata = prayer.slice(statIndex, endIndex);
       // res.json(prayerdata);
       // console.log(prayer.slice(statIndex, endIndex));
-      res.json(result);
+      res.json(result.praydata);
       console.log(result);
+    });
+};
+//
+//
+//
+
+/// NOTE LOGIC
+
+//
+//
+//
+exports.addNote = (req, res) => {
+  let note = req.body.note;
+  note.postedBy = req.body.userId;
+
+  Prayer.findbyIdAndUpdate(
+    req.body.prayerId,
+    { $push: { notes: note } },
+    { new: true }
+  )
+    .populate("notes.postedBy", "_id")
+    .exec((err, result) => {
+      if (err) {
+        return res.status(400).json({
+          error: err
+        });
+      } else {
+        res.json(result);
+      }
+    });
+};
+
+exports.editNote = (req, res) => {
+  let note = req.body.note;
+
+  Prayer.findByIdAndUpdate(req.body.prayerId, {
+    $pull: { notes: { _id: note._id } }
+  }).exec((err, result) => {
+    if (err) {
+      return res.status(400).json({
+        error: err
+      });
+    } else {
+      Prayer.findByIdAndUpdate(
+        req.body.prayerId,
+        { $push: { notes: note, updated: new Date() } },
+        { new: true }
+      )
+        .populate("notes.postedBy", "_id ")
+        .populate("postedBy", "_id ")
+        .exec((err, result) => {
+          if (err) {
+            return res.status(400).json({
+              error: err
+            });
+          } else {
+            res.json(result);
+          }
+        });
+    }
+  });
+};
+
+exports.removeNote = (req, res) => {
+  let note = req.body.note;
+
+  Prayer.findByIdAndUpdate(
+    req.body.postId,
+    { $pull: { note: { _id: note._id } } },
+    { new: true }
+  )
+    .populate("notess.postedBy", "_id ")
+    .populate("postedBy", "_id ")
+    .exec((err, result) => {
+      if (err) {
+        return res.status(400).json({
+          error: err
+        });
+      } else {
+        res.json(result);
+      }
     });
 };

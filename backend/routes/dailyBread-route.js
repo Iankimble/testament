@@ -1,8 +1,13 @@
 const express = require("express");
-const { dailyBread } = require("../controllers/dailyBread-controller");
+const {
+  dailyBread,
+  createPassage
+} = require("../controllers/dailyBread-controller");
 
 const router = express.Router();
 
-router.get("/dailyBread", dailyBread);
+router.get("/dailybread", dailyBread);
+
+router.post("/dailybread/new", createPassage);
 
 module.exports = router;

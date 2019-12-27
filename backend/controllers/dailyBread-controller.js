@@ -1,24 +1,24 @@
-const cors = require("cors");
-let request = require("request");
+const Scripture = require("../models/DailyBread-model");
+const Daily = require("../models/Daily");
 
-// Write logic that will randomly selct a wisdom book
-// Write logic that will loop through chapters and select 1
-// Write logic that will loop through verses from selected chapter
-
-exports.dailyBread = (req, res, next) => {
-  let options = {
-    mode: cors,
-    method: "GET",
-    url: "https://ajith-holy-bible.p.rapidapi.com/GetVerses",
-    qs: { Book: "Job", chapter: "4", VerseFrom: "5", VerseTo: "10" },
-    headers: {
-      "x-rapidapi-host": "ajith-holy-bible.p.rapidapi.com",
-      "x-rapidapi-key": "vvGe6mgKVamsh6lwgjlpLJnxM7oKp1qiE7OjsnFW2o2Lpl9caf"
+exports.createPassage = (req, res) => {
+  let passage = new Scripture(req.body);
+  passage.save((err, result) => {
+    if (err) {
+      res
+        .status(400)
+        .json({ msg: "somethings wrong check createPassage -Ian" });
     }
-  };
-  request(options, function(error, response, body) {
-    if (error) throw new Error(error);
-    // console.log(body);
-    return res.json(body);
+    res.status(200).json(result);
+  });
+};
+
+// move this to server so it can work with scheduler
+exports.dailyBread = (req, res) => {
+  Daily.find().exec((err, data) => {
+    if (err) {
+      return res.status(400).json({ msg: "nah" });
+    }
+    res.json(data);
   });
 };
