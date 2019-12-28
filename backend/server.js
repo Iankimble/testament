@@ -36,7 +36,7 @@ getRandomPassage = function() {
         return err;
       }
       let newData = data[0];
-      console.log(newData);
+      // console.log(newData);
       let daily = new Daily(newData);
       daily.save((err, result) => {
         if (err) {

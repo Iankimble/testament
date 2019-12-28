@@ -9,7 +9,7 @@ const {
   deletPrayer,
   allUserPrayersPagination,
   addNote,
-  updateNote,
+
   removeNote
 } = require("../controllers/prayer-controller");
 
@@ -37,19 +37,15 @@ router.post("/new/prayer/:userId", requireSignin, createPrayer);
 router.put("/prayer/:prayerId", requireSignin, editPrayer);
 
 // user deletes a prayer (require user to signin, delete data)
-router.delete("/prayer/:prayerId", requireSignin, deletPrayer);
+router.put("/prayer/:prayerId", requireSignin, deletPrayer);
 
 //--------------------------------------------------------------//
 //  add a note to prayer
 router.post("/prayer/addnote", requireSignin, addNote);
 //comment
 
-// edit not on prayer
-router.put("/prayer/updatenote", requireSignin, updateNote);
-//updatecomment
-
 // remove note on prayer
-router.put("/prayer/removenote", requireSignin, removeNote);
+router.delete("/prayer/removenote", requireSignin, removeNote);
 // uncomment
 
 //------------------------------------------------------------//

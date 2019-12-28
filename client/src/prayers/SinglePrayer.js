@@ -93,11 +93,6 @@ class SinglePrayer extends Component {
               margin: "5px"
             }}
           >
-            {/* <Row>
-              <Button variant="info" size="lg" block>
-                Add testament
-              </Button>
-            </Row> */}
             <Row
               style={{
                 alignContent: "center",
