@@ -133,7 +133,7 @@ export const addNote = (userId, token, prayerId, note) => {
 
 export const removeNote = (userId, token, prayerId, note) => {
   return fetch(`${process.env.REACT_APP_API_URL}/prayer/removenote`, {
-    method: "DELETE",
+    method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",

@@ -31,28 +31,27 @@ class PrayerNote extends Component {
     });
   };
 
+  // this is correct sending the data
   remove = note => {
     const userId = isAuthenticated().user._id;
     const token = isAuthenticated().token;
     const prayerId = this.props.prayerId;
 
+    console.log("user id" + userId);
+    console.log("token " + token);
+    console.log("prayer id" + prayerId);
     console.log(note);
 
     removeNote(userId, token, prayerId, note).then(data => {
       if (data.error) {
         console.log(data.error);
       } else {
+        // something is wrong here where it is not changing/ updating the state
+        // SOLUTION WAS TO CHANGE THE ROUTE TO A POST??? COUPLE OF THOUGHTS BUT ODD WHEN DELETE WORKED AS WELL... RESEARCH
         this.props.updateNotes(data.notes);
       }
     });
   };
-
-  // deleteConfirmed = note => {
-  //   let answer = window.confirm("Are you sure you want to delete your note?");
-  //   if (answer) {
-  //     this.remove(note);
-  //   }
-  // };
 
   render() {
     const { notes } = this.props;

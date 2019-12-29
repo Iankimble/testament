@@ -5,9 +5,9 @@ import { isAuthenticated } from "../auth/Index";
 
 class SubProfileMenu extends Component {
   render() {
-    /////////
     const { prayers, last, lastId } = this.props;
-    ////
+    let page = 1;
+    let limit = 3;
 
     return (
       <div>
@@ -43,7 +43,12 @@ class SubProfileMenu extends Component {
                   padding: "5px"
                 }}
               >
-                <Link to={`/all/prayers/${isAuthenticated().user._id}`}>
+                <Link
+                  to={`/all/${
+                    isAuthenticated().user._id
+                  }?page=${page}&limit=${limit}`}
+                >
+                  {/* <Link to={`/all/prayers/${isAuthenticated().user._id}`}> */}
                   <Button size="lg" style={{ width: "300px" }}>
                     View all prayers
                   </Button>

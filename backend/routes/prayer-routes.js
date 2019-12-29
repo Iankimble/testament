@@ -45,7 +45,7 @@ router.post("/prayer/addnote", requireSignin, addNote);
 //comment
 
 // remove note on prayer
-router.delete("/prayer/removenote", requireSignin, removeNote);
+router.post("/prayer/removenote", requireSignin, removeNote);
 // uncomment
 
 //------------------------------------------------------------//

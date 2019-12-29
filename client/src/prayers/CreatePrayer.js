@@ -61,10 +61,10 @@ class CreatePrayer extends Component {
           this.setState({
             loading: false,
             title: "",
-            body: "",
-            redirectToProfile: true
+            body: ""
           });
         }
+        alert("prayer created!");
       });
     }
   };

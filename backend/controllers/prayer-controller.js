@@ -188,6 +188,7 @@ exports.addNote = (req, res) => {
 
 exports.removeNote = (req, res) => {
   let note = req.body.note;
+  note.postedBy = req.body.userId;
 
   Prayer.findByIdAndUpdate(
     req.body.prayerId,

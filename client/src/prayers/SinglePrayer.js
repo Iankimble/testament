@@ -45,6 +45,7 @@ class SinglePrayer extends Component {
 
   updateNotes = notes => {
     this.setState({ notes });
+    console.log({ notes });
   };
 
   deletePrayer = () => {
@@ -60,6 +61,7 @@ class SinglePrayer extends Component {
         console.log(data.error);
       } else {
         this.setState({});
+        alert("prayer deleted");
       }
     });
   };
