@@ -37,7 +37,7 @@ router.post("/new/prayer/:userId", requireSignin, createPrayer);
 router.put("/prayer/:prayerId", requireSignin, editPrayer);
 
 // user deletes a prayer (require user to signin, delete data)
-router.put("/prayer/:prayerId", requireSignin, deletPrayer);
+router.delete("/prayer/:prayerId", requireSignin, deletPrayer);
 
 //--------------------------------------------------------------//
 //  add a note to prayer
