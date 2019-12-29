@@ -59,7 +59,7 @@ class SinglePrayer extends Component {
       if (data.error) {
         console.log(data.error);
       } else {
-        this.setState({ redirectToHome: true });
+        this.setState({});
       }
     });
   };

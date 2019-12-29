@@ -3,12 +3,9 @@ import { Link } from "react-router-dom";
 import { Card, CardGroup, Button, Col, Row } from "react-bootstrap";
 import { isAuthenticated } from "../auth/Index";
 
-class SubProfileMenu extends Component {
+class NoDataSub extends Component {
   render() {
-    /////////
     const { prayers, last, lastId } = this.props;
-    ////
-
     return (
       <div>
         <CardGroup style={{ margin: "5px" }}>
@@ -64,8 +61,6 @@ class SubProfileMenu extends Component {
             </Row>
           </Card>
           <Card>
-            {/**************************************************************************** */}
-
             <Card.Body>
               <Card.Title style={{ textAlign: "center" }}>
                 <i>Most recently created prayer</i>
@@ -77,7 +72,6 @@ class SubProfileMenu extends Component {
                 }}
               >
                 <p>
-                  <h2>{last.title}</h2>
                   <p
                     style={{
                       whiteSpace: "nowrap",
@@ -86,14 +80,10 @@ class SubProfileMenu extends Component {
                       fontSize: "20px",
                       padding: "45px"
                     }}
-                  >
-                    {last.body}
-                  </p>
+                  ></p>
                 </p>
               </Card.Text>
             </Card.Body>
-
-            {/***************************************************** */}
             <Row
               style={{
                 alignContent: "center",
@@ -106,18 +96,12 @@ class SubProfileMenu extends Component {
                   margin: "5px",
                   padding: "5px"
                 }}
-              >
-                <Link to={`/prayer/${lastId}`}>
-                  <Button size="lg" style={{ width: "300px" }}>
-                    View Prayer
-                  </Button>
-                </Link>
-              </div>
+              ></div>
             </Row>
-          </Card>{" "}
+          </Card>
         </CardGroup>
       </div>
     );
   }
 }
-export default SubProfileMenu;
+export default NoDataSub;
