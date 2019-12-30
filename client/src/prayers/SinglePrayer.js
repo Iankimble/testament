@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { single, remove } from "./prayer-api";
 import { isAuthenticated } from "../auth/Index";
 import { Link, Redirect } from "react-router-dom";
+import moment from "moment";
 import PrayerNote from "./PrayerNotes";
 import {
   Jumbotron,
@@ -84,7 +85,13 @@ class SinglePrayer extends Component {
           <Jumbotron style={{ textAlign: "center", marginTop: "15px" }}>
             <h1>{this.state.prayer.title}</h1>
             <p>
-              <i> {new Date(this.state.prayer.createdOn).toString()}</i>
+              <i>
+                {" "}
+                {moment(new Date(this.state.prayer.createdOn)).format(
+                  "MMMM Do YYYY, h:mm a"
+                )}
+              </i>
+              {/* <i> {new Date(this.state.prayer.createdOn).toString()}</i> */}
             </p>
             <p>{this.state.prayer.body}</p>
           </Jumbotron>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { addNote, removeNote } from "./prayer-api";
 import { isAuthenticated } from "../auth/Index";
+import moment from "moment";
 import { Link } from "react-router-dom";
 import { Form, Col, Button, Row } from "react-bootstrap";
 
@@ -83,12 +84,21 @@ class PrayerNote extends Component {
             {notes.map((note, i) => {
               return (
                 <div key={i}>
-                  <p>
-                    {note.created}
+                  <p style={{ margin: "20px" }}>
+                    <i>
+                      {moment(new Date(note.created)).format(
+                        "MMMM Do YYYY, h:mm a"
+                      )}
+                    </i>
+                    {/* {new Date(note.created).toDateString()} */}
+                    <br />
                     <br />
                     {note.text}
                     <br />
-                    <Button onClick={() => this.remove(note)}>Remove</Button>
+                    <br />
+                    <Button variant="danger" onClick={() => this.remove(note)}>
+                      Remove
+                    </Button>
                   </p>
                   <hr />
                 </div>
