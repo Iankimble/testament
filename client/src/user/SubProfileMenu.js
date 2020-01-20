@@ -49,7 +49,15 @@ class SubProfileMenu extends Component {
                   }?page=${page}&limit=${limit}`}
                 >
                   {/* <Link to={`/all/prayers/${isAuthenticated().user._id}`}> */}
-                  <Button size="lg" style={{ width: "300px" }}>
+                  <Button
+                    size="lg"
+                    style={{
+                      width: "300px",
+                      backgroundColor: "#6e6e6dff",
+                      border: "none",
+                      fontFamily: "IBM Plex Serif"
+                    }}
+                  >
                     View all prayers
                   </Button>
                 </Link>
@@ -61,7 +69,15 @@ class SubProfileMenu extends Component {
                 }}
               >
                 <Link to={`/new/prayer/${isAuthenticated().user._id}`}>
-                  <Button size="lg" style={{ width: "300px" }}>
+                  <Button
+                    size="lg"
+                    style={{
+                      width: "300px",
+                      backgroundColor: "#6e6e6dff",
+                      border: "none",
+                      fontFamily: "IBM Plex Serif"
+                    }}
+                  >
                     Create new prayer
                   </Button>
                 </Link>
@@ -113,7 +129,15 @@ class SubProfileMenu extends Component {
                 }}
               >
                 <Link to={`/prayer/${lastId}`}>
-                  <Button size="lg" style={{ width: "300px" }}>
+                  <Button
+                    size="lg"
+                    style={{
+                      width: "300px",
+                      backgroundColor: "#6e6e6dff",
+                      border: "none",
+                      fontFamily: "IBM Plex Serif"
+                    }}
+                  >
                     View Prayer
                   </Button>
                 </Link>

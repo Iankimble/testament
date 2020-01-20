@@ -57,7 +57,7 @@ class PrayerNote extends Component {
   render() {
     const { notes } = this.props;
     return (
-      <div>
+      <div style={{ fontFamily: "IBM Plex Serif" }}>
         <h2 style={{ textAlign: "center" }}>Leave a note</h2>
         <Form.Row style={{ margin: "10px" }}>
           <Col>
@@ -72,7 +72,17 @@ class PrayerNote extends Component {
         </Form.Row>
         <br />
         <Row style={{ margin: "5px" }}>
-          <Button onClick={this.add} variant="info" size="lg" block>
+          <Button
+            onClick={this.add}
+            variant="info"
+            size="lg"
+            block
+            style={{
+              backgroundColor: "#6e6e6dff",
+              border: "none",
+              fontFamily: "IBM Plex Serif"
+            }}
+          >
             Add Note
           </Button>
         </Row>

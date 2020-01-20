@@ -70,7 +70,7 @@ class CreatePrayer extends Component {
   };
 
   newPrayerForm = (title, body) => (
-    <div style={{ margin: "10px" }}>
+    <div style={{ margin: "10px", fontFamily: "IBM Plex Serif" }}>
       <h2 style={{ textAlign: "center" }}> Create a prayer</h2>
       <hr />
       <form>
@@ -100,7 +100,16 @@ class CreatePrayer extends Component {
         </Form.Row>
       </form>
       <br />
-      <Button size="lg" block onClick={this.clickSubmit}>
+      <Button
+        size="lg"
+        block
+        onClick={this.clickSubmit}
+        style={{
+          backgroundColor: "#6e6e6dff",
+          border: "none",
+          fontFamily: "IBM Plex Serif"
+        }}
+      >
         Create Prayer
       </Button>
     </div>

@@ -42,7 +42,7 @@ class Signin extends Component {
   };
 
   signinForm = (email, password) => (
-    <form>
+    <form style={{ fontFamily: "IBM Plex Serif" }}>
       <br />
       <Form>
         <Form.Group controlId="formGroupEmail">
@@ -64,7 +64,12 @@ class Signin extends Component {
             value={password}
           />
         </Form.Group>
-        <Button onClick={this.clickSubmit}>Submit</Button>
+        <Button
+          onClick={this.clickSubmit}
+          style={{ backgroundColor: "#6e6e6dff", border: "none" }}
+        >
+          Submit
+        </Button>
       </Form>
     </form>
   );

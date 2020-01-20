@@ -62,7 +62,7 @@ class Ap extends Component {
 
   renderPrayers = prayers => {
     return (
-      <div style={{ margin: "10px" }}>
+      <div style={{ margin: "10px", fontFamily: "IBM Plex Serif" }}>
         <br />
         {prayers.map((prayers, i) => {
           return (
@@ -100,7 +100,14 @@ class Ap extends Component {
                         <br />
                       </Card.Text>
                       <Link to={`/prayer/${prayers._id._id}`}>
-                        <Button>View more</Button>
+                        <Button
+                          style={{
+                            backgroundColor: "#6e6e6dff",
+                            border: "none"
+                          }}
+                        >
+                          View more
+                        </Button>
                       </Link>
                     </Card.Body>
                     <Card.Footer>
@@ -133,14 +140,24 @@ class Ap extends Component {
         >
           <Button
             size="lg"
-            style={{ width: "200px", margin: "5px" }}
+            style={{
+              width: "200px",
+              margin: "5px",
+              backgroundColor: "#6e6e6dff",
+              border: "none"
+            }}
             onClick={this.loadPrev}
           >
             Previous
           </Button>
           <Button
             size="lg"
-            style={{ width: "200px", margin: "5px" }}
+            style={{
+              width: "200px",
+              margin: "5px",
+              backgroundColor: "#6e6e6dff",
+              border: "none"
+            }}
             onClick={this.loadNext}
           >
             Next

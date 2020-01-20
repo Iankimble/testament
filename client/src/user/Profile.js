@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { isAuthenticated } from "../auth/Index";
-// import { Redirect, Link } from "react-router-dom";
 import { read, dailyBread } from "./User-Api";
 import SubProfileMenu from "./SubProfileMenu";
 import { allPrayers } from "../prayers/prayer-api";
 import { Jumbotron, Button, Card, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import dbi from "../images/book-2073023_1920shift.jpg";
 
 class Profile extends Component {
   constructor() {
@@ -62,8 +62,6 @@ class Profile extends Component {
   componentDidMount() {
     const userId = this.props.match.params.userId;
     this.init(userId);
-
-    // console.log(this.props.match.params.userId);
 
     //-------------------------------------------------------//
     dailyBread().then(data => {
@@ -150,7 +148,15 @@ class Profile extends Component {
     {
       return (
         <div>
-          <Jumbotron fluid>
+          <Jumbotron
+            fluid
+            style={{
+              backgroundImage: `url(${dbi})`,
+              backgroundSize: "cover",
+              color: "white",
+              fontFamily: "IBM Plex Serif"
+            }}
+          >
             <h2 style={{ textAlign: "center" }}>
               Welcome, {isAuthenticated().user.firstName}
               <hr />

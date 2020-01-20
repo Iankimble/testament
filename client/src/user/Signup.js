@@ -49,7 +49,7 @@ class Signup extends Component {
     <div>
       <h1>Sign Up</h1>
       <br />
-      <form>
+      <form style={{ fontFamily: "IBM Plex Serif" }}>
         <Form>
           <Form.Row>
             <Col>
@@ -92,7 +92,12 @@ class Signup extends Component {
           </Form.Group>
         </Form>
 
-        <Button onClick={this.clickSubmit}>Submit</Button>
+        <Button
+          onClick={this.clickSubmit}
+          style={{ backgroundColor: "#6e6e6dff", border: "none" }}
+        >
+          Submit
+        </Button>
       </form>
     </div>
   );
